@@ -16,13 +16,17 @@
     form{
       margin-top: 40px;
     }
+    .container{
+      background-color: green;
+    }
   </style>
+
 </head>
 
 <body>
   <?php 
     include 'nav.php'; 
-    require_once 'database.php';
+    // require_once 'database.php';
   ?>
 <div class="container">
 <form method="POST" action="">
