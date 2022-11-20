@@ -52,7 +52,7 @@
       ('$fname', '$lname', '$number', '$haddress', '$province', '$city', '$dob', '$gender', '$nationality', '$fdose', '$sdose', '$fbooster', '$sbooster')";
       
       if(mysqli_query($connect, $insertRecord)){
-        $msg = $fname." ".$lname." wass successfully recorded.";
+        $msg = $fname." ".$lname." was successfully recorded.";
         header('Location: '.$_SERVER['PHP_SELF'].'?sucmsg='.$msg); 
       }
       else{
