@@ -16,10 +16,10 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mc-auto">
       <li class="nav-item <?php echo $active_menu_link; ?>">
-        <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="index.php">Dashboard</a>
       </li>
       <li class="nav-item <?php echo $active_menu_link; ?>">
-        <a class="nav-link" href="#">Add Records</a>
+        <a class="nav-link" href="records.php">Records</a>
       </li>
     </ul>
   </div>
