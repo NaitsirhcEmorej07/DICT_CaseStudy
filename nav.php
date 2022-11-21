@@ -4,6 +4,7 @@
         color: white;
         padding: 5px 10px;
     }
+
 </style>
 <?php
     $active_menu_link = 'active'; // For settings to be dynamic
@@ -14,7 +15,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mc-auto">
+    <ul class="navbar-nav">
       <li class="nav-item <?php echo $active_menu_link; ?>">
         <a class="nav-link" href="index.php">Dashboard</a>
       </li>
