@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="assets/city.js"></script>
   <title>Vaccination Records</title>
@@ -50,7 +50,7 @@
       
       if(mysqli_query($connect, $insertRecord)){
         $msg = $fname." ".$lname." was successfully recorded.";
-        echo "<script>window.location.href='index.php?sucmsg=somevalue'
+        echo "<script>window.location.href='records.php?sucmsg=$msg'
         </script>";
         // header('Location: '.$_SERVER['PHP_SELF'].'?sucmsg='.$msg); 
       }
@@ -63,6 +63,18 @@
     }
   ?>
 <!-- Modal -->
+<!-- <div id="dataModal" class="modal fade">  
+<div class="container">
+<div class="modal fade" id="mdl_showRecord" tabindex="-1" aria-labelledby="mdl_showRecordLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal_large">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:bisque;">
+        <h1 class="modal-title fs-5" id="mdl_showRecordLabel" style="text-align:center;width:100%;">Vaccination Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="student_detail" style="background-color:#eee"> -->
+
+
 <div id="dataModal" class="modal fade">  
 <div class="container">
     <div class="modal-dialog modal-lg modal_large">  

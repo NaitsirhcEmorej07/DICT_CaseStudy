@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css" integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -54,42 +54,42 @@
                 <button class="btn btn-primary" id="btn_add_record"><i class="fa-sharp fa-solid fa-user-plus"></i> Add Record</button>
             </div>
             <div class="col-lg-12">
-                <table class="table">
-                    <thead class="thead-dark">
+                <table class="table_records" id="table_records" style="width: 100%;">
+                    <thead class="table-dark">
                         <tr>
-                            <th>
+                            <td>
                                 ID
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 First Name
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Last Name
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Mobile Number
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Home Address
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Province
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 City
-                            </th>
-                            <th>
-                                Date of Birth
-                            </th>
-                            <th>
+                            </td>
+                            <td>
+                                Date of Birtd
+                            </td>
+                            <td>
                                 Gender
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Nationality
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 Action
-                            </th>
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,7 +110,7 @@
                                         $gender = $row['gender'];
                                         $nationality = $row['nationality'];
                                         $action  = '
-                                            <button class="btn btn-warning" onclick="showRecord('.$id.')" id="btn_show"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                                            <button type="button" class="btn btn-warning btn_show" data-bs-toggle="modal" data-bs-target="#mdl_showRecord" id="'.$id.'"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                                             <button class="btn btn-success" onclick=""><i class="fa-sharp fa-solid fa-pencil"></i></button>
                                             <button class="btn btn-danger" onclick="" id="btn_delete"><i class="fa-sharp fa-solid fa-trash-can"></i></button>
                                         ';
@@ -148,7 +148,7 @@
                                             <td>
                                                 $nationality
                                             </td>
-                                            <td>
+                                            <td style='text-align:center;'>
                                                 $action
                                             </td>
                                         </tr>
@@ -168,7 +168,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function(){ 
@@ -176,9 +176,21 @@
                 $('#dataModal').modal("show"); 
             });
 
-            $('#btn_show').on('click', function(id) {
-                $('#personal_record').modal("show"); 
-            });
+            $('#table_records tbody').on('click', '.btn_show', function(){  
+               var record_id = $(this).attr("id");
+               console.log(record_id);
+               $.ajax({  
+                    url:"server_fetch_details.php",  
+                    method:"post",  
+                    data:{record_id:record_id},  
+                    success:function(data){
+                        $('#div_records').html(data); 
+                    },  
+                    error: function(data) {
+                        alert('Ajax Data Fetch Error');
+                    }
+               });  
+          });  
         })
         
     </script>
