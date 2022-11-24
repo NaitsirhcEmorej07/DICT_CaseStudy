@@ -199,12 +199,13 @@
                 <label class="col-4">Gender</label>
                 <div class="col-8">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input name="rad_gender_edit" id="rad_male" type="radio" class="custom-control-input" value="Male" checked="checked">
-                    <label for="rad_male" class="custom-control-label">Male</label>
+                    
+                    <input name="rad_gender_edit" id="rad_male_edit" type="radio" class="custom-control-input" value="Male">
+                    <label for="rad_male_edit" class="custom-control-label">Male</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input name="rad_gender_edit" id="rad_female" type="radio" class="custom-control-input" value="Female">
-                    <label for="rad_female" class="custom-control-label">Female</label>
+                    <input name="rad_gender_edit" id="rad_female_edit" type="radio" class="custom-control-input" value="Female">
+                    <label for="rad_female_edit" class="custom-control-label">Female</label>
                   </div>
                 </div>
               </div>
