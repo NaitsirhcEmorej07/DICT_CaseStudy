@@ -44,7 +44,7 @@
     $sbooster = $_POST['list_secondbooster'];
 
     $insertRecord = "INSERT INTO 
-      db_vaccination.tbl_vaccine_record 
+      tbl_vaccine_record 
       (fname, lname, mobile, address, province, city, birthdate, gender, nationality, fdoze, sdoze, fbooster, sbooster) 
       VALUES 
       ('$fname', '$lname', '$number', '$haddress', '$province', '$city', '$dob', '$gender', '$nationality', '$fdose', '$sdose', '$fbooster', '$sbooster')";

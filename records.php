@@ -44,7 +44,7 @@ include("update_records.php");
 <body>
     <?php
     include 'nav.php';
-    require_once 'database.php';
+    include_once('database.php');
     ?>
     <div class="container-fluid">
 
@@ -88,7 +88,7 @@ include("update_records.php");
                                 City
                             </td>
                             <td style='text-align:center;'>
-                                Date of Birtd
+                                Date of Birth
                             </td>
                             <td style='text-align:center;'>
                                 Gender
@@ -103,7 +103,7 @@ include("update_records.php");
                     </thead>
                     <tbody>
                         <?php
-                        $sqlShowAll = "SELECT * FROM db_vaccination.tbl_vaccine_record";
+                        $sqlShowAll = "SELECT * FROM tbl_vaccine_record";
                         if ($resShowAll = mysqli_query($connect, $sqlShowAll)) {
                             $checkShowAll = mysqli_num_rows($resShowAll);
                             if ($checkShowAll > 0) {
