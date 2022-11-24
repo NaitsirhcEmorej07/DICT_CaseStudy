@@ -1,12 +1,12 @@
 <?php
-if(isset($_POST['record_id'])){
+if (isset($_POST['record_id'])) {
     require_once('database.php');
 
-    $sqlShowAll = "SELECT * FROM db_vaccination.tbl_vaccine_record WHERE id = '".$_POST['record_id']."'";
-    if($resShowAll = mysqli_query($connect, $sqlShowAll)){
+    $sqlShowAll = "SELECT * FROM db_vaccination.tbl_vaccine_record WHERE id = '" . $_POST['record_id'] . "'";
+    if ($resShowAll = mysqli_query($connect, $sqlShowAll)) {
         $checkShowAll = mysqli_num_rows($resShowAll);
-        if($checkShowAll > 0){
-            while($row = mysqli_fetch_assoc($resShowAll)){
+        if ($checkShowAll > 0) {
+            while ($row = mysqli_fetch_assoc($resShowAll)) {
                 $id = $row['id'];
                 $fname = $row['fname'];
                 $lname = $row['lname'];
@@ -107,5 +107,3 @@ if(isset($_POST['record_id'])){
         ";
     echo $somejson;
 }
-    
-?>
