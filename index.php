@@ -1,6 +1,5 @@
 <?php
 include_once 'database.php';
-
 $sql = "
 SELECT sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 < 18) AS minor, 
 sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 >= 18) AS adult, 
@@ -18,10 +17,45 @@ while ($row = mysqli_fetch_array($result)) {
   $total = $row["total"];
 }
 //PERCENTAGE
-$adultpercentage = ($adult * 100) / $total;
-$minorpercentage = ($minor * 100) / $total;
-$localpercentage = ($local * 100) / $total;
-$foreignerpercentage = ($foreigner * 100) / $total;
+
+
+if ($adult == 0) {
+  $adultpercentage = 0;
+}
+else
+{
+  $adultpercentage = ($adult * 100) / $total;
+}
+
+if ($minor == 0) {
+  $minorpercentage = 0;
+}
+else
+{
+  $minorpercentage = ($minor * 100) / $total;
+}
+
+if ($local == 0) {
+  $localpercentage = 0;
+}
+else
+{
+  $localpercentage = ($local * 100) / $total;
+}
+
+if ($foreigner == 0) {
+  $foreignerpercentage = 0;
+}
+else
+{
+  $foreignerpercentage = ($foreigner * 100) / $total;
+}
+
+
+
+
+
+
 
 //QUERY FOR FIRST DOSE
 $sqlfdose = "
