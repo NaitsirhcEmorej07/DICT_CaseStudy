@@ -3,8 +3,8 @@ include_once 'database.php';
 $sql = "
 SELECT sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 < 18) AS minor, 
 sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 >= 18) AS adult, 
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'philippines' ) as foreigner,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'philippines' ) as local,
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'Filipino' ) as foreigner,
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'Filipino' ) as local,
 (SELECT COUNT(*) FROM tbl_vaccine_record) as total
 FROM tbl_vaccine_record;
 ";
@@ -61,8 +61,8 @@ else
 $sqlfdose = "
 SELECT sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 < 18) AS minor, 
 sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 >= 18) AS adult,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'philippines' ) as foreigner,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'philippines' ) as local
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'Filipino' ) as foreigner,
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'Filipino' ) as local
 from tbl_vaccine_record 
 WHERE fdoze != '';
 ";
@@ -78,8 +78,8 @@ while ($row = mysqli_fetch_array($result)) {
 $sqlsdose = "
 SELECT sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 < 18) AS minor, 
 sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 >= 18) AS adult,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'philippines' ) as foreigner,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'philippines' ) as local 
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'Filipino' ) as foreigner,
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'Filipino' ) as local 
 from tbl_vaccine_record 
 WHERE sdoze != '';
 ";
@@ -95,8 +95,8 @@ while ($row = mysqli_fetch_array($result)) {
 $sqlfbooster = "
 SELECT sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 < 18) AS minor, 
 sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 >= 18) AS adult,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'philippines' ) as foreigner,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'philippines' ) as local  
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'Filipino' ) as foreigner,
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'Filipino' ) as local  
 from tbl_vaccine_record 
 WHERE fbooster != '';
 ";
@@ -112,8 +112,8 @@ while ($row = mysqli_fetch_array($result)) {
 $sqlsbooster = "
 SELECT sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 < 18) AS minor, 
 sum(DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), birthdate)), '%Y') + 0 >= 18) AS adult,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'philippines' ) as foreigner,
-(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'philippines' ) as local 
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality != 'Filipino' ) as foreigner,
+(SELECT COUNT(*) FROM tbl_vaccine_record WHERE nationality = 'Filipino' ) as local 
 
 from tbl_vaccine_record 
 WHERE sbooster != '';
