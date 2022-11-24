@@ -258,9 +258,9 @@ include("update_records.php");
                     $('#list_province_edit option[value="' + data.province + '"]').prop('selected', true);
                     
                     $('#date_dob').val(data.birthdate);
-                    $('#rad_gender').val(data.gender);
+                    // $('rad_gender_edit').val(data.gender);
+                    $('input[value='+data.gender+']').prop('checked',true);
                     $('#list_nationality').val(data.nationality);
-
                     $('#list_firstdose').val(data.fdoze);
                     $('#list_seconddose').val(data.fbooster);
 
