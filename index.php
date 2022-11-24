@@ -273,10 +273,10 @@ while ($row = mysqli_fetch_array($result)) {
       chart.draw(data, options);
       var data = google.visualization.arrayToDataTable([
         ['Image 1: Bar Chart for the Vaccination Report of vaccine dosage and booster', 'Adults', 'Minor', 'Local', 'Foreigner'],
-        ['First Dose', <?php echo $minorfdose ?>, <?php echo $adultfdose ?>, <?php echo $localfdose ?>, <?php echo $foreignerfdose ?>],
-        ['Second Dose', <?php echo $minorsdose ?>, <?php echo $adultsdose ?>, <?php echo $localsdose ?>, <?php echo $foreignersdose ?>],
-        ['First Booster', <?php echo $minorfbooster ?>, <?php echo $adultfbooster ?>, <?php echo $localfbooster ?>, <?php echo $foreignerfbooster ?>],
-        ['Second Booster', <?php echo $minorsbooster ?>, <?php echo $adultsbooster ?>, <?php echo $localsbooster ?>, <?php echo $foreignersbooster ?>]
+        ['First Dose', <?php echo $adultfdose  ?>, <?php echo $minorfdose ?>, <?php echo $localfdose ?>, <?php echo $foreignerfdose ?>],
+        ['Second Dose', <?php echo $adultsdose ?>, <?php echo $minorsdose ?>, <?php echo $localsdose ?>, <?php echo $foreignersdose ?>],
+        ['First Booster', <?php echo  $adultfbooster ?>, <?php echo $minorfbooster ?>, <?php echo $localfbooster ?>, <?php echo $foreignerfbooster ?>],
+        ['Second Booster', <?php echo $adultsbooster ?>, <?php echo $minorsbooster ?>, <?php echo $localsbooster ?>, <?php echo $foreignersbooster ?>]
       ]);
       var options = {
         chart: {

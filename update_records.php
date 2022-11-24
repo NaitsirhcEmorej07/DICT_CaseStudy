@@ -22,35 +22,54 @@
       margin: 50px;
     }
   </style>
+
+
 </head>
 
 <body>
   <?php
   require_once 'database.php';
 
-  if (isset($_POST['btn_submit'])) {
+  if (isset($_POST['btn_update_submit'])) {
     $fname = $_POST['txt_firstname'];
     $lname = $_POST['txt_lastname'];
     $number = $_POST['txt_number'];
     $haddress = $_POST['txt_homeaddress'];
-    $province = $_POST['list_province'];
-    $city = $_POST['list_city'];
+    $province = $_POST['list_province_edit'];
+    $city = $_POST['list_city_edit'];
     $dob = $_POST['date_dob'];
-    $gender = $_POST['rad_gender'];
+    $gender = $_POST['rad_gender_edit'];
     $nationality = $_POST['list_nationality'];
     $fdose = $_POST['list_firstdose'];
     $sdose = $_POST['list_seconddose'];
     $fbooster = $_POST['list_firstbooster'];
     $sbooster = $_POST['list_secondbooster'];
+    $update_id_placeholder = $_POST['update_id_placeholder'];
 
-    $insertRecord = "INSERT INTO 
-      db_vaccination.tbl_vaccine_record 
-      (fname, lname, mobile, address, province, city, birthdate, gender, nationality, fdoze, sdoze, fbooster, sbooster) 
-      VALUES 
-      ('$fname', '$lname', '$number', '$haddress', '$province', '$city', '$dob', '$gender', '$nationality', '$fdose', '$sdose', '$fbooster', '$sbooster')";
+    $Update_Record = "
 
-    if (mysqli_query($connect, $insertRecord)) {
-      $msg = $fname . " " . $lname . " was successfully recorded.";
+    UPDATE tbl_vaccine_record
+    SET 
+    fname = '$fname', 
+    lname = '$lname', 
+    mobile = '$number', 
+    address = '$haddress', 
+    province = '$province', 
+    city = '$city', 
+    birthdate = '$dob', 
+    gender = '$gender', 
+    nationality = '$nationality', 
+
+    fdoze = '$fdose', 
+    sdoze = '$sdose', 
+
+    fbooster = '$fbooster', 
+    sbooster = '$sbooster'
+    WHERE id = '$update_id_placeholder'
+      ";
+
+    if (mysqli_query($connect, $Update_Record)) {
+      $msg = $fname . " " . $lname . " was successfully updated.";
       echo "<script>window.location.href='records.php?sucmsg=$msg'
         </script>";
       // header('Location: '.$_SERVER['PHP_SELF'].'?sucmsg='.$msg); 
@@ -74,16 +93,17 @@
       <div class="modal-body" id="student_detail" style="background-color:#eee"> -->
 
 
-  <div id="dataModal" class="modal fade">
+  <div id="Update_Modal" class="modal fade">
     <div class="container">
       <div class="modal-dialog modal-lg modal_large">
         <div class="modal-content">
           <div class="modal-header" style="background-color:bisque;background-size:cover;width: 100%;">
-            <h4 class="modal-title" style="text-align:center;width: 100%;">Add Record</h4>
-            <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title" style="text-align:center;width: 100%;">Update Record</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="student_detail" style="background-color:#eee">
             <form method="POST" action="">
+              <input type="text" id="update_id_placeholder" name="update_id_placeholder" hidden>
 
               <div class="form-group row">
                 <label for="text1" class="col-4 col-form-label">First Name</label>
@@ -94,6 +114,7 @@
                         <i class="fa fa-address-card"></i>
                       </div>
                     </div>
+
                     <input id="txt_firstname" name="txt_firstname" placeholder="Enter First Name" type="text" class="form-control" required>
                   </div>
                 </div>
@@ -141,12 +162,12 @@
               <div class="form-group row">
                 <label class="col-4 col-form-label" for="select">Province</label>
                 <div class="col-8">
-                  <select id="list_province" name="list_province" class="custom-select" onChange="filterCities()" required>
-                    <option value="--select one--" disabled="disabled" selected>-- Select One --</option>
+                  <select id="list_province_edit" name="list_province_edit" class="custom-select" onChange="filterCitiesUpdate()" required>
                     <script>
                       for (const [key] of Object.entries(cities)) {
                         document.write(`<option value='${key}'>${key}</option>`);
                       }
+                      // filterCities()
                     </script>
                   </select>
                 </div>
@@ -154,10 +175,9 @@
               <div class="form-group row">
                 <label class="col-4 col-form-label" for="select">City</label>
                 <div class="col-8">
-                  <select id="list_city" name="list_city" class="custom-select" required>
-                    <option value="--select one--" disabled="disabled" selected>-- Select One --</option>
+                  <select id="list_city_edit" name="list_city_edit" class="custom-select">
                     <script>
-
+                      // filterCities()
                     </script>
                   </select>
                 </div>
@@ -179,11 +199,11 @@
                 <label class="col-4">Gender</label>
                 <div class="col-8">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input name="rad_gender" id="rad_male" type="radio" class="custom-control-input" value="Male" checked="checked">
+                    <input name="rad_gender_edit" id="rad_male" type="radio" class="custom-control-input" value="Male" checked="checked">
                     <label for="rad_male" class="custom-control-label">Male</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input name="rad_gender" id="rad_female" type="radio" class="custom-control-input" value="Female">
+                    <input name="rad_gender_edit" id="rad_female" type="radio" class="custom-control-input" value="Female">
                     <label for="rad_female" class="custom-control-label">Female</label>
                   </div>
                 </div>
@@ -266,13 +286,13 @@
               </div>
               <div class="form-group row">
                 <div class="offset-4 col-8">
-                  <button name="btn_submit" type="submit" class="btn btn-primary">Submit</button>
+                  <button name="btn_update_submit" id="btn_update_submit" type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </div>
             </form>
           </div>
-          <div class="modal-footer" style="background-color:bisque;background-size:cover;width: 100%;">  
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
+          <div class="modal-footer" style="background-color:bisque;background-size:cover;width: 100%;">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
           </div>
         </div>
       </div>
@@ -284,19 +304,21 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
   <script>
-    function filterCities() {
-      province = document.getElementById('list_province').value;
-      city = document.getElementById("list_city");
+    function filterCitiesUpdate() {
+      // alert("sample");
+      province = document.getElementById('list_province_edit').value;
+      city = document.getElementById("list_city_edit");
 
       // Remove Previous Options if Applicable
       while (city.hasChildNodes()) {
         city.removeChild(city.firstChild);
       }
       // INSERT CODE FOR <option value="--select one--" disabled="disabled" selected>-- Select One --</option>
+      console.log(cities[province]);
       cities[province].forEach((filteredCity) => {
         let option = document.createElement('option');
         option.textContent = filteredCity;
-        document.querySelector('#list_city').appendChild(option);
+        document.querySelector('#list_city_edit').appendChild(option);
       });
     }
   </script>

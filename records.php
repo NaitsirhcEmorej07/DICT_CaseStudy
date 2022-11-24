@@ -1,5 +1,10 @@
+<?php
+include("delete_records_confirmation_modal.php");
+include("update_records.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,40 +19,43 @@
     <script src="assets/city.js"></script>
     <title>Vaccination Records</title>
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0
         }
-        .div_records{
+
+        .div_records {
             margin: auto;
             text-align: center;
             width: 100%;
         }
-        .title{
+
+        .title {
             margin: 20px;
         }
-        #btn_add_record{
+
+        #btn_add_record {
             margin: 15px 5px;
         }
     </style>
 </head>
+
 <body>
     <?php
-        include 'nav.php'; 
-        require_once 'database.php';
+    include 'nav.php';
+    require_once 'database.php';
     ?>
     <div class="container-fluid">
-            
+
         <div class="row div_records">
             <h1 class="title">Vaccination Record</h1>
             <div class="msg">
                 <?php
-                    if(isset($_GET['errmsg'])){
-                        echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;'><div class='col'><span style='color:#D8000C;'><i>".$_GET['errmsg']."</i></span></div></div>";
-                    }
-                    elseif(isset($_GET['sucmsg'])){
-                        echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;'><div class='col'><span style='color:green;'><i>".$_GET['sucmsg']."</i></span></div></div>";
-                    }
+                if (isset($_GET['errmsg'])) {
+                    echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;'><div class='col'><span style='color:#D8000C;'><i>" . $_GET['errmsg'] . "</i></span></div></div>";
+                } elseif (isset($_GET['sucmsg'])) {
+                    echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;'><div class='col'><span style='color:green;'><i>" . $_GET['sucmsg'] . "</i></span></div></div>";
+                }
                 ?>
             </div>
             <div class="col-lg-4 offset-lg-8" style="text-align:right;">
@@ -94,29 +102,29 @@
                     </thead>
                     <tbody>
                         <?php
-                            $sqlShowAll = "SELECT * FROM db_vaccination.tbl_vaccine_record";
-                            if($resShowAll = mysqli_query($connect, $sqlShowAll)){
-                                $checkShowAll = mysqli_num_rows($resShowAll);
-                                if($checkShowAll > 0){
-                                    while($row = mysqli_fetch_assoc($resShowAll)){
-                                        $id = $row['id'];
-                                        $fname = $row['fname'];
-                                        $lname = $row['lname'];
-                                        $mobile = $row['mobile'];
-                                        $address = $row['address'];
-                                        $province = $row['province'];
-                                        $city = $row['city'];
-                                        $birthdate = $row['birthdate'];
-                                        $gender = $row['gender'];
-                                        $nationality = $row['nationality'];
-                                        $action  = '
-                                            <button type="button" class="btn btn-warning btn_show" data-bs-toggle="modal" data-bs-target="#mdl_showRecord" id="'.$id.'"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-                                            <button class="btn btn-success" onclick=""><i class="fa-sharp fa-solid fa-pencil"></i></button>
-                                            <button class="btn btn-danger" onclick="" id="btn_delete"><i class="fa-sharp fa-solid fa-trash-can"></i></button>
+                        $sqlShowAll = "SELECT * FROM db_vaccination.tbl_vaccine_record";
+                        if ($resShowAll = mysqli_query($connect, $sqlShowAll)) {
+                            $checkShowAll = mysqli_num_rows($resShowAll);
+                            if ($checkShowAll > 0) {
+                                while ($row = mysqli_fetch_assoc($resShowAll)) {
+                                    $id = $row['id'];
+                                    $fname = $row['fname'];
+                                    $lname = $row['lname'];
+                                    $mobile = $row['mobile'];
+                                    $address = $row['address'];
+                                    $province = $row['province'];
+                                    $city = $row['city'];
+                                    $birthdate = $row['birthdate'];
+                                    $gender = $row['gender'];
+                                    $nationality = $row['nationality'];
+                                    $action  = '
+                                            <button type="button" class="btn btn-warning btn_show" data-bs-toggle="modal" data-bs-target="#mdl_showRecord" id="' . $id . '"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                                            <button type="button" class="btn btn-success update_records" value="' . $id . '" onclick="" id="' . $id . '"><i class="fa-sharp fa-solid fa-pencil" ></i></button>
+                                            <button type="button" class="btn btn-danger delete_records"  value="' . $id . '" id="btn_delete"><i class="fa-sharp fa-solid fa-trash-can" ></i></button>
                                         ';
 
-                                        echo 
-                                        "
+                                    echo
+                                    "
                                         <tr>
                                             <td>
                                                 $id
@@ -153,17 +161,17 @@
                                             </td>
                                         </tr>
                                         ";
-                                    }
                                 }
                             }
+                        }
                         ?>
                     </tbody>
                 </table>
             </div>
         </div>
         <?php
-            include('add_records.php'); 
-            include('show_record.php'); 
+        include('add_records.php');
+        include('show_record.php');
         ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
@@ -171,30 +179,100 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(document).ready(function(){ 
+        $(document).ready(function() {
             $('#btn_add_record').on('click', function() {
-                $('#dataModal').modal("show"); 
+                $('#dataModal').modal("show");
             });
 
-            $('#table_records tbody').on('click', '.btn_show', function(){  
-               var record_id = $(this).attr("id");
-               console.log(record_id);
-               $.ajax({  
-                    url:"server_fetch_details.php",  
-                    method:"post",  
-                    data:{record_id:record_id},  
-                    success:function(data){
-                        $('#div_records').html(data); 
-                    },  
+            $('#table_records tbody').on('click', '.btn_show', function() {
+                var record_id = $(this).attr("id");
+                console.log(record_id);
+                $.ajax({
+                    url: "server_fetch_details.php",
+                    method: "post",
+                    data: {
+                        record_id: record_id
+                    },
+                    success: function(data) {
+                        $('#div_records').html(data);
+                    },
                     error: function(data) {
                         alert('Ajax Data Fetch Error');
                     }
-               });  
-          });  
+                });
+            });
         })
-        
     </script>
+
     <script>
+        $(document).ready(function() {
+            $(document).on('click', '.delete_records', function(event) {
+                $('#delete_records_confirmation_modal').modal('show');
+                var delete_records_value = $(this).attr("value");
+                $('#confirm_delete_btn').val(delete_records_value);
+
+            });
+
+            $(document).on('click', '#confirm_delete_btn', function(event) {
+                var delete_records_value = $(this).attr("value");
+                $.ajax({
+
+                    url: "server_delete_details.php",
+                    method: "POST",
+                    data: {
+                        delete_records_value
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+
+                        var msg = data+"'s record was successfully deleted";
+                        window.location.href='records.php?sucmsg='+msg;
+                       
+                    }
+                })
+            });
+
+            $(document).on('click', '.update_records', function(event) {
+                var update_records_value = $(this).attr("value");
+                // alert(update_records_value);
+                $.ajax({
+                    url: "server_fetch_update_details.php",
+                    method: "POST",
+                    data: {
+                        update_records_value
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                    console.log(data);
+                    
+                    $('#Update_Modal').modal('show');
+                    $('#update_id_placeholder').val(data.id);
+                    $('#txt_firstname').val(data.fname);
+                    $('#txt_lastname').val(data.lname);
+                    $('#txt_number').val(data.mobile);
+                    $('#txt_homeaddress').val(data.address);
+                    // $('#list_province_edit').val(data.province);
+                    
+                    $('#list_province_edit option[value="' + data.province + '"]').prop('selected', true);
+                    
+                    $('#date_dob').val(data.birthdate);
+                    $('#rad_gender').val(data.gender);
+                    $('#list_nationality').val(data.nationality);
+
+                    $('#list_firstdose').val(data.fdoze);
+                    $('#list_seconddose').val(data.fbooster);
+
+                    $('#list_firstbooster').val(data.sdoze);
+                    $('#list_secondbooster').val(data.sbooster);
+                    filterCitiesUpdate();
+                    $('#list_city_edit').val(data.city);
+                    // $('#list_city_edit option[value="' + data.city + '"]').prop('selected', true);
+                    }
+                })
+            });
+        });
     </script>
 </body>
+
 </html>
