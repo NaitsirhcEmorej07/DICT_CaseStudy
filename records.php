@@ -44,7 +44,7 @@ include("update_records.php");
 <body>
     <?php
     include 'nav.php';
-    require_once 'database.php';
+    include_once('database.php');
     ?>
     <div class="container-fluid">
 
@@ -88,7 +88,7 @@ include("update_records.php");
                                 City
                             </td>
                             <td style='text-align:center;'>
-                                Date of Birtd
+                                Date of Birth
                             </td>
                             <td style='text-align:center;'>
                                 Gender
@@ -103,7 +103,7 @@ include("update_records.php");
                     </thead>
                     <tbody>
                         <?php
-                        $sqlShowAll = "SELECT * FROM db_vaccination.tbl_vaccine_record";
+                        $sqlShowAll = "SELECT * FROM tbl_vaccine_record";
                         if ($resShowAll = mysqli_query($connect, $sqlShowAll)) {
                             $checkShowAll = mysqli_num_rows($resShowAll);
                             if ($checkShowAll > 0) {
@@ -236,7 +236,6 @@ include("update_records.php");
 
             $(document).on('click', '.update_records', function(event) {
                 var update_records_value = $(this).attr("value");
-                // alert(update_records_value);
                 $.ajax({
                     url: "server_fetch_update_details.php",
                     method: "POST",
@@ -253,22 +252,16 @@ include("update_records.php");
                     $('#txt_lastname').val(data.lname);
                     $('#txt_number').val(data.mobile);
                     $('#txt_homeaddress').val(data.address);
-                    // $('#list_province_edit').val(data.province);
-                    
                     $('#list_province_edit option[value="' + data.province + '"]').prop('selected', true);
-                    
                     $('#date_dob').val(data.birthdate);
-                    // $('rad_gender_edit').val(data.gender);
                     $('input[value='+data.gender+']').prop('checked',true);
-                    $('#list_nationality').val(data.nationality);
+                    $('#list_nationality_edit option[value="' + data.nationality + '"]').prop('selected', true);
                     $('#list_firstdose').val(data.fdoze);
                     $('#list_seconddose').val(data.fbooster);
-
                     $('#list_firstbooster').val(data.sdoze);
                     $('#list_secondbooster').val(data.sbooster);
                     filterCitiesUpdate();
                     $('#list_city_edit').val(data.city);
-                    // $('#list_city_edit option[value="' + data.city + '"]').prop('selected', true);
                     }
                 })
             });
@@ -278,5 +271,4 @@ include("update_records.php");
         } );
     </script>
 </body>
-
 </html>

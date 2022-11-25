@@ -2,7 +2,7 @@
 if (isset($_POST['record_id'])) {
     require_once('database.php');
 
-    $sqlShowAll = "SELECT * FROM db_vaccination.tbl_vaccine_record WHERE id = '" . $_POST['record_id'] . "'";
+    $sqlShowAll = "SELECT * FROM tbl_vaccine_record WHERE id = '" . $_POST['record_id'] . "'";
     if ($resShowAll = mysqli_query($connect, $sqlShowAll)) {
         $checkShowAll = mysqli_num_rows($resShowAll);
         if ($checkShowAll > 0) {

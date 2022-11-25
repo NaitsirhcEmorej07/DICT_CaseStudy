@@ -72,25 +72,12 @@
       $msg = $fname . " " . $lname . " was successfully updated.";
       echo "<script>window.location.href='records.php?sucmsg=$msg'
         </script>";
-      // header('Location: '.$_SERVER['PHP_SELF'].'?sucmsg='.$msg); 
     } else {
       $msg = "There is something wrong while recording " . $fname . " " . $lname . "'s info, please check your input or try again later";
       echo "<script>window.location.href='records.php?errmsg=error</script>";
-      // header('Location: '.$_SERVER['PHP_SELF'].'?errmsg='.$msg);
     }
   }
   ?>
-  <!-- Modal -->
-  <!-- <div id="dataModal" class="modal fade">  
-<div class="container">
-<div class="modal fade" id="mdl_showRecord" tabindex="-1" aria-labelledby="mdl_showRecordLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal_large">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color:bisque;">
-        <h1 class="modal-title fs-5" id="mdl_showRecordLabel" style="text-align:center;width:100%;">Vaccination Record</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="student_detail" style="background-color:#eee"> -->
 
 
   <div id="Update_Modal" class="modal fade">
@@ -212,12 +199,8 @@
               <div class="form-group row">
                 <label for="select2" class="col-4 col-form-label">Nationality</label>
                 <div class="col-8">
-                  <select id="list_nationality" name="list_nationality" class="custom-select" required>
-                    <option value="--select one--" disabled="disabled" selected>-- Select One --</option>
-                    <option value="Afghanistan">Afghanistan</option>
-                    <option value="Albania">Albania</option>
-                    <option value="Algeria">Algeria</option>
-                    <option value="Philippines">Philippines</option>
+                  <select id="list_nationality_edit" name="list_nationality_edit" class="custom-select" required>
+                    <?php include 'nationality.php'; ?>
                   </select>
                 </div>
               </div>
@@ -306,15 +289,12 @@
   <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
   <script>
     function filterCitiesUpdate() {
-      // alert("sample");
       province = document.getElementById('list_province_edit').value;
       city = document.getElementById("list_city_edit");
 
-      // Remove Previous Options if Applicable
       while (city.hasChildNodes()) {
         city.removeChild(city.firstChild);
       }
-      // INSERT CODE FOR <option value="--select one--" disabled="disabled" selected>-- Select One --</option>
       console.log(cities[province]);
       cities[province].forEach((filteredCity) => {
         let option = document.createElement('option');
