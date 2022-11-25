@@ -220,39 +220,37 @@ while ($row = mysqli_fetch_array($result)) {
   ?>
 
   <div class="text-center">
-    <h1>STATISTICS</h1>
-    <div class="row">
-      <div class="col d-flex justify-content-center">
-        <h4>TOTAL RECORDS: </h4> &nbsp;
-        <br>
-        <!-- <button class="btn btn-primary"></button> -->
-        <h4><?php echo ($total); ?></h4>
-      </div>
-    </div>
+    <h1>VACCINATION REPORT STATISTICS</h1>
+    <!--  -->
   </div>
 
   <br>
 
   <div class="container ">
     <div class="row">
-      <div class="col-md-3 d-flex justify-content-end ">
-        <button class="btn btn-outline-primary btn-lg" style="width:220px; height: 100px; border-width: medium; color:black">Adult <br>
-          <p><?php echo ($adult." Records "."|    ".number_format($adultpercentage)."%");  ?></p>
+      <div class="col-md-2 ">
+        <button class="btn btn-outline-primary btn-lg" style="width:180px; height: 100px; border-width: medium; color:black; font-size:28px; font-weight:500">Adult <br>
+          <p style="font-size: 18px;font-weight:400"><?php echo ($adult." Records "."|    ".number_format($adultpercentage)."%");  ?></p>
         </button>
       </div>
-      <div class="col-md-3 ">
-        <button class="btn btn-outline-danger btn-lg" style="width:220px; height: 100px; border-width: medium; color:black">Minor <br>
-          <p><?php echo ($minor." Records "."|    ".number_format($minorpercentage)."%");  ?></p>
+      <div class="col-md-2 ">
+        <button class="btn btn-outline-danger btn-lg" style="width:180px; height: 100px; border-width: medium; color:black; font-size:28px; font-weight:500">Minor <br>
+          <p style="font-size: 20px;font-weight:400"><?php echo ($minor." Records "."|    ".number_format($minorpercentage)."%");  ?></p>
         </button>
       </div>
-      <div class="col-md-3 d-flex justify-content-end ">
-        <button class="btn btn-outline-warning btn-lg" style="width:220px; height: 100px; border-width: medium; color:black">Local <br>
-        <p><?php echo ($local." Records "."|    ".number_format($localpercentage)."%");  ?></p>
+      <div class="col-md-4 text-center ">
+        <button class="btn btn-outline-info btn-lg" style="width:260px; height: 100px; border-width: medium; color:black; font-size:28px; font-weight:500">TOTAL RECORDS <br>
+          <p style="font-size: 20px;font-weight:400"><?php echo ($total." Records"); ?></p>
         </button>
       </div>
-      <div class="col-md-3 ">
-        <button class="btn btn-outline-success btn-lg" style="width:220px; height: 100px; border-width: medium; color:black">Foreigner <br>
-        <p><?php echo ($foreigner." Records "."|    ".number_format($foreignerpercentage)."%");  ?></p>
+      <div class="col-md-2 ">
+        <button class="btn btn-outline-warning btn-lg" style="width:180px; height: 100px; border-width: medium; color:black; font-size:28px; font-weight:500">Local <br>
+        <p style="font-size: 18px;font-weight:400"><?php echo ($local." Records "."|    ".number_format($localpercentage)."%");  ?></p>
+        </button>
+      </div>
+      <div class="col-md-2 ">
+        <button class="btn btn-outline-success btn-lg" style="width:180px; height: 100px; border-width: medium; color:black; font-size:28px; font-weight:500">Foreigner <br>
+        <p style="font-size: 20px;font-weight:400"><?php echo ($foreigner." Records "."|    ".number_format($foreignerpercentage)."%");  ?></p>
         </button>
       </div>
     </div>
