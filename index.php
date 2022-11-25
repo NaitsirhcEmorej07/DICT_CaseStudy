@@ -21,33 +21,25 @@ while ($row = mysqli_fetch_array($result)) {
 
 if ($adult == 0) {
   $adultpercentage = 0;
-}
-else
-{
+} else {
   $adultpercentage = ($adult * 100) / $total;
 }
 
 if ($minor == 0) {
   $minorpercentage = 0;
-}
-else
-{
+} else {
   $minorpercentage = ($minor * 100) / $total;
 }
 
 if ($local == 0) {
   $localpercentage = 0;
-}
-else
-{
+} else {
   $localpercentage = ($local * 100) / $total;
 }
 
 if ($foreigner == 0) {
   $foreignerpercentage = 0;
-}
-else
-{
+} else {
   $foreignerpercentage = ($foreigner * 100) / $total;
 }
 
@@ -127,7 +119,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 //QUERY FOR COUNT COMMIN BRAND
-$sqlcountall= "SELECT
+$sqlcountall = "SELECT
 
 (SELECT COUNT(*) FROM tbl_vaccine_record WHERE 
 fdoze = 'Pfizer-BioNTech' or 
@@ -208,7 +200,7 @@ while ($row = mysqli_fetch_array($result)) {
     }
   </style>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
@@ -230,27 +222,27 @@ while ($row = mysqli_fetch_array($result)) {
     <div class="row">
       <div class="col-md-2 ">
         <button class="btn btn-outline-primary btn-lg" style="width:180px; height: 115px; border-width: medium; color:black; font-size:28px; font-weight:500">Adult <br>
-          <p style="font-size: 20px;font-weight:400"><?php echo ($adult." Records ". " <br>   ".number_format($adultpercentage)."%");  ?></p>
+          <p style="font-size: 20px;font-weight:400"><?php echo ($adult . " Records " . " <br>   " . number_format($adultpercentage) . "%");  ?></p>
         </button>
       </div>
       <div class="col-md-2 ">
         <button class="btn btn-outline-danger btn-lg" style="width:180px; height: 115px; border-width: medium; color:black; font-size:28px; font-weight:500">Minor <br>
-          <p style="font-size: 20px;font-weight:400"><?php echo ($minor." Records "." <br>   ".number_format($minorpercentage)."%");  ?></p>
+          <p style="font-size: 20px;font-weight:400"><?php echo ($minor . " Records " . " <br>   " . number_format($minorpercentage) . "%");  ?></p>
         </button>
       </div>
       <div class="col-md-4 text-center ">
         <button class="btn btn-outline-info btn-lg" style="width:260px; height: 115px; border-width: medium; color:black; font-size:28px; font-weight:500">TOTAL RECORDS <br>
-          <p style="font-size: 20px;font-weight:400"><?php echo ($total." Records"); ?></p>
+          <p style="font-size: 20px;font-weight:400"><?php echo ($total . " Records"); ?></p>
         </button>
       </div>
       <div class="col-md-2 ">
         <button class="btn btn-outline-warning btn-lg" style="width:180px; height: 115px; border-width: medium; color:black; font-size:28px; font-weight:500">Local <br>
-        <p style="font-size: 20px;font-weight:400"><?php echo ($local." Records "." <br>   ".number_format($localpercentage)."%");  ?></p>
+          <p style="font-size: 20px;font-weight:400"><?php echo ($local . " Records " . " <br>   " . number_format($localpercentage) . "%");  ?></p>
         </button>
       </div>
       <div class="col-md-2 ">
         <button class="btn btn-outline-success btn-lg" style="width:180px; height: 115px; border-width: medium; color:black; font-size:28px; font-weight:500">Foreigner <br>
-        <p style="font-size: 20px;font-weight:400"><?php echo ($foreigner." Records "." <br>   ".number_format($foreignerpercentage)."%");  ?></p>
+          <p style="font-size: 20px;font-weight:400"><?php echo ($foreigner . " Records " . " <br>   " . number_format($foreignerpercentage) . "%");  ?></p>
         </button>
       </div>
     </div>
@@ -283,14 +275,14 @@ while ($row = mysqli_fetch_array($result)) {
       //PIE CHART
       var data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['Pfizer-BioNTech', <?php echo($pfizer); ?>],
-        ['Moderna (mRNA-1273)', <?php echo($moderna); ?>],
-        ['Oxford/AstraZeneca', <?php echo($astra); ?>],
-        ['J&J', <?php echo($jj); ?>],
-        ['Sinopharm', <?php echo($sinopharm); ?>],
-        ['Sinovac', <?php echo($sinovac); ?>],
-        ['COVAXIN', <?php echo($covaxin); ?>],
-        ['Covovax', <?php echo($covovax); ?>],
+        ['Pfizer-BioNTech', <?php echo ($pfizer); ?>],
+        ['Moderna (mRNA-1273)', <?php echo ($moderna); ?>],
+        ['Oxford/AstraZeneca', <?php echo ($astra); ?>],
+        ['J&J', <?php echo ($jj); ?>],
+        ['Sinopharm', <?php echo ($sinopharm); ?>],
+        ['Sinovac', <?php echo ($sinovac); ?>],
+        ['COVAXIN', <?php echo ($covaxin); ?>],
+        ['Covovax', <?php echo ($covovax); ?>],
       ]);
       var options = {
         is3D: true,
@@ -319,14 +311,14 @@ while ($row = mysqli_fetch_array($result)) {
       };
       var chart = new google.charts.Bar(document.getElementById('barchart'));
       chart.draw(data, google.charts.Bar.convertOptions(options));
-      
+
       // $(window).resize(function() {
       //   drawChart();
       // });
     }
   </script>
-  <?php 
-  
+  <?php
+
   ?>
 </body>
 
