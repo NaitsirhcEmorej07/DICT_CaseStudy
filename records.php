@@ -49,16 +49,20 @@ include("update_records.php");
     <div class="container-fluid">
 
         <div class="row div_records">
-            <h1 class="title">Vaccination Record</h1>
-            <div class="msg">
+            <div class="col">
+                <div class="row" style="margin-top:10px;width:100%;margin-left:0px;">
+                    <h1 class="title" style="width:100%;">Vaccination Record</h1>
+                </div>
                 <?php
-                if (isset($_GET['errmsg'])) {
-                    echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;'><div class='col'><span style='color:#D8000C;'><i>" . $_GET['errmsg'] . "</i></span></div></div>";
-                } elseif (isset($_GET['sucmsg'])) {
-                    echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;'><div class='col'><span style='color:green;'><i>" . $_GET['sucmsg'] . "</i></span></div></div>";
-                }
+                    if (isset($_GET['errmsg'])) {
+                        echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;width:100%;margin-left:-0px;'><div class='col'><span style='color:#D8000C;'><i>" . $_GET['errmsg'] . "</i></span></div></div>";
+                    } elseif (isset($_GET['sucmsg'])) {
+                        echo "<div class='form-row' style='margin-top:-20px;margin-bottom:20px;text-align:center;font-size:15px;width:100%;margin-left:-0px;'><div class='col'><span style='color:green;'><i>" . $_GET['sucmsg'] . "</i></span></div></div>";
+                    }
                 ?>
             </div>
+            
+            
             <div class="col-lg-4 offset-lg-8" style="text-align:right;">
                 <button class="btn btn-primary" id="btn_add_record"><i class="fa-sharp fa-solid fa-user-plus"></i> Add Record</button>
             </div>

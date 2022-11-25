@@ -39,7 +39,7 @@
     $city = $_POST['list_city_edit'];
     $dob = $_POST['date_dob'];
     $gender = $_POST['rad_gender_edit'];
-    $nationality = $_POST['list_nationality'];
+    $nationality = $_POST['list_nationality_edit'];
     $fdose = $_POST['list_firstdose'];
     $sdose = $_POST['list_seconddose'];
     $fbooster = $_POST['list_firstbooster'];
